@@ -1,7 +1,7 @@
 export const plugins = [];
 tailwind.config = {
     theme: {
-        
+
         extend: {
             colors: {
                 'forest': '#06473d',
@@ -12,4 +12,3 @@ tailwind.config = {
         },
     }
 }
-
