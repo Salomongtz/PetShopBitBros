@@ -1,16 +1,17 @@
 const { createApp } = Vue
 const optionsVue = {
-    el: '#app',
     data() {
-        return {
-            images: [
-                './assets/images/farmacia.png',
-                './assets/images/jugueteria.png',
-                './assets/images/contacto.png',
-            ],
-            currentIndex: 0,
-        };
-    },
+
+    }, beforeCreate() {
+        console.log('beforeCreate');
+        fetch('https://moviestack.onrender.com/api/petshop')
+            .then(response => response.json())
+            .then((data) => {
+                console.log(data);
+            }).catch(error => {
+                console.log(error);
+            })
+    }
 }
 
 const app = createApp(optionsVue)
