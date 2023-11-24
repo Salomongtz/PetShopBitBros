@@ -33,15 +33,14 @@
             <a href="./jugueteria.html"><img src="../images/jugueteria.png" alt></a>
             <div class="flex flex-wrap mt-6 gap-6" id="contenedor">
                 <template v-if="juguetes.length>0" v-for="juguete of juguetes">
-                    <div class=" flex flex-col md:w-1/3 md:h-96 bg-white max-w-sm rounded-lg overflow-hidden shadow-lg mx-auto"
-                        id="card-1">
+                    <div class="card flex flex-col md:w-1/3 md:h-96 bg-white max-w-sm rounded-lg overflow-hidden shadow-lg mx-auto">
                         <img class="h-2/3 w-full object-contain flex self-center" v-bind:src="juguete.imagen"
                             alt="producto" />
                         <div class="px-6 py-4">
                             <h3 class="font-bold text-xl mb-2 leading-normal">{{juguete.producto}}</h3>
                             <h4>Precio: ${{juguete.precio}}</h4>
                             <h5>Disponibles: {{juguete.disponibles}}</h5>
-                            <button type="button">Detalles</button>
+                            <button @click="verDetalles(juguete)" type="button">Detalles</button>
                         </div>
                     </div>
                 </template>
