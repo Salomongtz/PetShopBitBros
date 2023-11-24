@@ -6,6 +6,8 @@ const app = createApp({
     data() {
         return {
             juguetes: [],
+            verModal: false,
+            juguete: {}
         }
     },
     beforeCreate() {
@@ -18,8 +20,13 @@ const app = createApp({
             .catch(error => console.error(error))
     },
     methods: {
-        filter() {
-            this.filtered = this.movies.filter(movie => movie.title.toLowerCase().includes(this.search.toLowerCase()) && (this.genre == "all" || movie.genres.includes(this.genre)))
+        mostrarModal(juguete) {
+            this.juguete = juguete
+            this.verModal = true
+        },
+        cerrarModal() {
+            this.juguete = {}
+            this.verModal = false
         }
     },
 })
