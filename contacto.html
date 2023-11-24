@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo Peludo</title>
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
+</head>
+
+<body class="bg-sun text-forest">
+    <header class="bg-forest text-sun font-semibold">
+        <div class="text-whitepy-5 px-10 md:flex md:items-center md:justify-between md:px-20">
+            <div class="flex items-center justify-between">
+                <a href="#"><img class="h-20" src="./assets/images/logo.png" alt="logo"></a>
+                <a class="font-extrabold text-2xl" href="#">Mundo Peludo</a>
+                <div class="md:hidden align-middle">
+                    <i class="material-icons align-middle cursor-pointer" @click.prevent="toogle">menu</i>
+                </div>
+            </div>
+            <div :class="open ? 'block' : 'hidden'" class="flex flex-col text-left md:block md:text-right mt-3 md:mt-0">
+                <a href="./assets/pages/" class="mt-3 md:mx-3">Contacto</a>
+                <a href="#" class="mt-3 md:mx-3">Farmacia</a>
+                <a href="#" class="mt-3 md:mx-3">Juguetes</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-10 py-20 flex flex-col items-center gap-8">
+        <h1 class="text-4xl font-bold">Un rincón de amor para tus mejores amigos de cuatro patas.</h1>
+        <div id="slider">
+            <figure>
+                <a href="./assets/pages/farmacia.html"><img src="./assets/images/farmacia.png" alt></a>
+                <a href="./assets/pages/juguetes.html"><img src="./assets/images/jugueteria.png" alt></a>
+                <a href="./assets/pages/contacto.html"><img src="./assets/images/contacto.png" alt></a>
+            </figure>
+        </div>
+
+        <div  class= "flex  justify-between gap-20 items-center" >
+            <form  class="border h-full w-80 p-2 rounded-md border-green-900 flex flex-col items-center justify-center" action="" method="">
+                <fieldset class="flex flex-col">
+                    <legend>Datos</legend>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required><br><br>
+
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" id="apellido" name="apellido" required><br><br>
+
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono" required><br><br>
+
+                    <label for="mascota">Mascota:</label>
+                    <select id="mascota" name="mascota">
+                        <option value="perro">Perro</option>
+                        <option value="gato">Gato</option>
+                        <option value="otro">Caballo</option>
+                        <option value="otro">Conejo</option>
+                        <option value="otro">Ave</option>
+                        <option value="otro">Otro</option>
+                    </select><br><br>
+
+                    <label for="comentario">Comentario:</label><br>
+                    <textarea id="comentario" name="comentario"></textarea><br><br>
+                </fieldset>
+                <input class="bg-green-900 rounded text-white p-2" type="submit" value="Enviar">
+            </form>
+          <article class="text-center flex gap-3 flex-col">
+          <h2 class="font-bold "> Nuestra Ubicación</h2>
+          <iframe class=" rounded-lg items-center " src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3405.1022395076698!2d-64.20285802358327!3d-31.411309096007376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432988145269a89%3A0xb96c029e26e0abd6!2sC.%20Paraguay%205%2C%20X5000%20C%C3%B3rdoba%2C%20Argentina!5e0!3m2!1ses-419!2sco!4v1700840406373!5m2!1ses-419!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </article>
+        </div>
+    
+    </main>
+
+    <footer class="text-center bg-forest text-sun">
+        <p>MindHub - Cohort FS052 JAVA - BitBros</p>
+    </footer>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="../../tailwind.config.extension.js"></script>
+    <script type="module" src="../../tailwind.config.js"></script>
+    
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
