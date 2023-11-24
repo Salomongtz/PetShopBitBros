@@ -6,21 +6,39 @@ const app = createApp({
     data() {
         return {
             juguetes: [],
+            selected:'menor',
+            productosOrdenados:[],
         }
     },
-    beforeCreate() {
+    beforeCreated() {
         fetch(url)
             .then(response => response.json())
             .then((data) => {
                 console.log(data)
                 this.juguetes = data.filter(item => item.categoria == "jugueteria")
+                this.productosOrdenados= this.juguetes
+                console.log(this.juguetes)
             })
             .catch(error => console.error(error))
     },
-    methods: {
-        filter() {
-            this.filtered = this.movies.filter(movie => movie.title.toLowerCase().includes(this.search.toLowerCase()) && (this.genre == "all" || movie.genres.includes(this.genre)))
-        }
+    
+    methods:{
+            selec(event){
+                this.selected = event.target.value
+                console.log("Seleccionado:", this.ordenSeleccionado)
+              if(selected="menor"){
+                   this.productosOrdenados= this.productosOrdenados.slice().sort((a, b) => a.precio - b.precio)}
+                else if (selected="mayor"){
+                   this.productosOrdenados= this.productosOrdenados.slice().sort((a, b) => b.precio - a.precio)}
+                   else if(selected="alfabetico"){
+             
+                   this.productosOrdenados= this.productosOrdenados.slice().sort((a, b) => a.nombre.localeCompare(b.nombre))}
+                   else{
+                
+                   this.productosOrdenados= this.productosOrdenados}
+                 
+                }
+        
     },
 })
 app.mount("#app")
