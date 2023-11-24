@@ -8,7 +8,7 @@ tailwind.config = {
                 'sun': '#fff6a4',
                 'sunset': '#efe271',
                 'coal': '#06473d ',
-            },
-        },
+            }
+        }
     }
 }
