@@ -3,16 +3,20 @@ const url= "https://moviestack.onrender.com/api/petshop"
 const{createApp}=Vue
 const optionsVue={
 data(){
+return {jugueteria:[],}
 },
-
 beforeCreate(){
  fetch(url)
  .then(response => response.json())
  .then(data => {
-this.productos = data
-console.log(this.productos)
+this.jugueteria = data
+console.log(data)
 })
+.catch(error=> console.error(error))
+},
+methods(){
+    
 },
 }
 const app = createApp(optionsVue)
-app.mount('#app')
+app.mount('#app') 
