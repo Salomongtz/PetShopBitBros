@@ -8,6 +8,8 @@ const app = createApp({
             juguetes: [],
             selected: 'menor',
             productosOrdenados: [],
+            verModal: false,
+            juguete: {}
         }
     },
     beforeCreate() {
@@ -23,6 +25,14 @@ const app = createApp({
     },
 
     methods: {
+        mostrarModal(juguete) {
+            this.juguete = juguete
+            this.verModal = true
+        },
+        cerrarModal() {
+            this.juguete = {}
+            this.verModal = false
+        },
         selec(event) {
             this.selected = event.target.value
             console.log("Seleccionado:", this.ordenSeleccionado)
