@@ -32,19 +32,19 @@
             <h1 class="text-4xl text-center font-bold mb-6">¡La mejor selección de juguetes para tu mascota!</h1>
             <a href="./jugueteria.html"><img src="../images/jugueteria.png" alt></a>
             <div class="flex flex-wrap mt-6 gap-6" id="contenedor">
-                    <label> Ordenar:</label>
-                 
-                        <!-- aca va barra de marce -->
-                        
+                <label> Ordenar:</label>
 
-                        <select name="" id=""  v-on:input="selec" >
-                            <option value="menor">Precio de menor a mayor</option>
-                            <option value="mayor">Precio de mayor a menor</option>
-                            <option value="alfabetico">Orden alfabetico</option>
-                        </select>
+                <!-- aca va barra de marce -->
+
+
+                <select name="" id="" v-on:input="selec">
+                    <option value="menor">Precio de menor a mayor</option>
+                    <option value="mayor">Precio de mayor a menor</option>
+                    <option value="alfabetico">Orden alfabetico</option>
+                </select>
 
                 <template v-if="juguetes.length>0" v-for="juguete in juguetes">
-                  
+
                     <!-- <div class="card flex flex-col w-1/3">
                         <h3>{{juguete.producto}}</h3>
                         <img v-bind:src="juguete.imagen" alt="producto">
@@ -53,7 +53,8 @@
                     </div> -->
                     <div class=" flex flex-col md:w-1/3 md:h-96 bg-white max-w-sm rounded-lg overflow-hidden shadow-lg mx-auto"
                         id="card-1">
-                        <img class="h-2/3 w-full object-contain flex self-center" v-bind:src="juguete.imagen" alt="producto" />
+                        <img class="h-2/3 w-full object-contain flex self-center" v-bind:src="juguete.imagen"
+                            alt="producto" />
                         <div class="px-6 py-4">
                             <h3 class="font-bold text-xl mb-2 leading-normal">{{juguete.producto}}</h3>
                             <h4>Precio: ${{juguete.precio}}</h4>
@@ -81,7 +82,7 @@
 
                                     <div class="w-full flex-none text-sm font-medium text-slate-700 mt-2">
                                         Disponibles: {{juguete.disponibles}}<span v-if="juguete.disponibles <=5"
-                                        class="text-red-500">¡Casi agotado!</span>
+                                            class="text-red-500">¡Casi agotado!</span>
                                     </div>
                                     <p class="text-sm text-slate-700 w-1/2">
                                         {{juguete.descripcion}}
