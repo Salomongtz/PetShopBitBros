@@ -6,8 +6,10 @@ const app = createApp({
     data() {
         return {
             juguetes: [],
-            selected:'menor',
-            productosOrdenados:[],
+            selected: 'menor',
+            productosOrdenados: [],
+            verModal: false,
+            juguete: {}
         }
     },
     beforeCreate() {
@@ -21,24 +23,36 @@ const app = createApp({
             })
             .catch(error => console.error(error))
     },
-    
-    methods:{
-            selec(event){
-                this.selected = event.target.value
-                console.log("Seleccionado:", this.ordenSeleccionado)
-              if(this.selected=="menor"){
-                   this.juguetes= this.juguetes.slice().sort((a, b) => a.precio - b.precio)}
-                else if (this.selected=="mayor"){
-                   this.juguetes= this.juguetes.slice().sort((a, b) => b.precio - a.precio)}
-                   else if(this.selected=="alfabetico"){
-             
-                   this.juguetes= this.juguetes.slice().sort((a, b) => a.producto.localeCompare(b.producto))}
-                   else{
-                
-                   this.juguetes= this.juguetes}
-                 
-                }
-        
+
+    methods: {
+        mostrarModal(juguete) {
+            this.juguete = juguete
+            this.verModal = true
+        },
+        cerrarModal() {
+            this.juguete = {}
+            this.verModal = false
+        },
+        selec(event) {
+            this.selected = event.target.value
+            console.log("Seleccionado:", this.ordenSeleccionado)
+            if (this.selected == "menor") {
+                this.juguetes = this.juguetes.slice().sort((a, b) => a.precio - b.precio)
+            }
+            else if (this.selected == "mayor") {
+                this.juguetes = this.juguetes.slice().sort((a, b) => b.precio - a.precio)
+            }
+            else if (this.selected == "alfabetico") {
+
+                this.juguetes = this.juguetes.slice().sort((a, b) => a.producto.localeCompare(b.producto))
+            }
+            else {
+
+                this.juguetes = this.juguetes
+            }
+
+        }
+
     },
 })
 app.mount("#app")
