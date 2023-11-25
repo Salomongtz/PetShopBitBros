@@ -32,7 +32,7 @@ const app = createApp({
                    this.juguetes= this.juguetes.slice().sort((a, b) => b.precio - a.precio)}
                    else if(this.selected=="alfabetico"){
              
-                   this.juguetes= this.juguetes.slice().sort((a, b) => a.nombre.localeCompare(b.nombre))}
+                   this.juguetes= this.juguetes.slice().sort((a, b) => a.producto.localeCompare(b.producto))}
                    else{
                 
                    this.juguetes= this.juguetes}
