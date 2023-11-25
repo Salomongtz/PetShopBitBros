@@ -9,7 +9,9 @@ const app = createApp({
             selected: 'menor',
             productosOrdenados: [],
             verModal: false,
-            juguete: {}
+            juguete: {},
+            buscador:'',
+            filtrados:[],
         }
     },
     beforeCreate() {
@@ -20,6 +22,10 @@ const app = createApp({
                 this.juguetes = data.filter(item => item.categoria == "jugueteria")
                 // this.productosOrdenados= this.juguetes
                 console.log(this.juguetes)
+                this.filtrados= data.filter(item => item.categoria == "jugueteria")
+                
+                
+
             })
             .catch(error => console.error(error))
     },
@@ -37,22 +43,32 @@ const app = createApp({
             this.selected = event.target.value
             console.log("Seleccionado:", this.ordenSeleccionado)
             if (this.selected == "menor") {
-                this.juguetes = this.juguetes.slice().sort((a, b) => a.precio - b.precio)
+                this.filtrados = this.filtrados.slice().sort((a, b) => a.precio - b.precio)
             }
             else if (this.selected == "mayor") {
-                this.juguetes = this.juguetes.slice().sort((a, b) => b.precio - a.precio)
+                this.filtrados = this.filtrados.slice().sort((a, b) => b.precio - a.precio)
             }
             else if (this.selected == "alfabetico") {
 
-                this.juguetes = this.juguetes.slice().sort((a, b) => a.producto.localeCompare(b.producto))
+                this.filtrados = this.filtrados.slice().sort((a, b) => a.producto.localeCompare(b.producto))
             }
             else {
 
-                this.juguetes = this.juguetes
+                this.filtrados = this.juguetes
             }
 
+        },
+        filtrarPorNombre(event){
+            this.buscador= event.target.value
+            this.filter()
+            console.log(this.buscador)
+            },
+        filter(){
+            const filtrado= this.juguetes.filter(juguete=>juguete.producto.toLowerCase().includes(this.buscador.toLowerCase()))
+            this.filtrados= filtrado
+            console.log(this.filtrados)
         }
 
-    },
+       },
 })
 app.mount("#app")
