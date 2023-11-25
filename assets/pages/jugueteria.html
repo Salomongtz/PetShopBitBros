@@ -33,9 +33,8 @@
 
             <a href="./jugueteria.html"><img src="../images/jugueteria.png" alt></a>
             <div class="flex flex-wrap mt-6 gap-6" id="contenedor">
-                <template v-if="juguetes.length>0">
                     <label> Ordenar:</label>
-                    {{ordenarProductos}}
+                 
                         <!-- aca va barra de marce -->
                         
 
@@ -44,10 +43,8 @@
                             <option value="mayor">Precio de mayor a menor</option>
                             <option value="alfabetico">Orden alfabetico</option>
                         </select>
-                    
-                </template>
 
-                <template v-if="productosOrdenados.length>0" v-for="juguete in productosOrdenados">
+                <template v-if="juguetes.length>0" v-for="juguete in juguetes">
                   
                     <!-- <div class="card flex flex-col w-1/3">
                         <h3>{{juguete.producto}}</h3>
