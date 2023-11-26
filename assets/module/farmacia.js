@@ -8,7 +8,9 @@ const opt = {
             filtrados: [],
             buscador: "",
             selected: "all",
-            menuOpen: false
+            menuOpen: false,
+            farmaco: "",
+            verModal: false
         }
     },
 
@@ -52,15 +54,15 @@ const opt = {
             const filtrado = this.farmacos.filter(farmaco => farmaco.producto.toLowerCase().includes(this.buscador.toLowerCase()))
             this.filtrados = filtrado
             console.log(this.filtrados)
-        }
-    }, mostrarModal(juguete) {
-        this.juguete = juguete
-        this.verModal = true
-    },
-    cerrarModal() {
-        this.juguete = {}
-        this.verModal = false
-    },
+        }, mostrarModal(farmaco) {
+            this.farmaco = farmaco
+            this.verModal = true
+        },
+        cerrarModal() {
+            this.farmaco = {}
+            this.verModal = false
+        },
+    }
 }
 
 const app = createApp(opt)
