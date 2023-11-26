@@ -41,20 +41,18 @@ const opt = {
 
                 this.filtrados = this.farmacos
             }
-
         },
-        filtrarPorNombre(event){
-            this.buscador= event.target.value
+        filtrarPorNombre(event) {
+            this.buscador = event.target.value
             this.filter()
             console.log(this.buscador)
-            },
-        filter(){
-            const filtrado= this.farmacos.filter(farmaco=>farmaco.producto.toLowerCase().includes(this.buscador.toLowerCase()))
-            this.filtrados= filtrado
+        },
+        filter() {
+            const filtrado = this.farmacos.filter(farmaco => farmaco.producto.toLowerCase().includes(this.buscador.toLowerCase()))
+            this.filtrados = filtrado
             console.log(this.filtrados)
         }
-
-       },
+    },
 }
 
 const app = createApp(opt)
