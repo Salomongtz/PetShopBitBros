@@ -24,9 +24,6 @@ const app = createApp({
         // this.productosOrdenados= this.juguetes
         console.log(this.juguetes)
         this.filtrados = data.filter(item => item.categoria == "jugueteria")
-
-
-
       })
       .catch(error => console.error(error))
   },
