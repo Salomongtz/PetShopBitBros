@@ -12,6 +12,7 @@ const app = createApp({
             juguete: {},
             buscador:'',
             filtrados:[],
+            menuOpen: false
         }
     },
     beforeCreate() {
