@@ -45,28 +45,30 @@
         </template>
     </header>
 
-    <main class="container mx-auto px-10 py-20 flex flex-col items-center gap-8">
+    <main class="container mx-auto px-10 py-5    flex flex-col items-center gap-8">
         <div class="flex flex-col items-center">
-            <a href="./jugueteria.html"><img src="../images/bannerjugueteria.png" alt></a>
-            <div class="flex flex-wrap flex-col items-center mt-6 gap-6" id="contenedor">
-                <div>
+            <a href="./jugueteria.html"><img class="md:h-[65vh] md:min-w-[80vw] rounded-md md:object-fill"
+                    src="../images/bannerjugueteria.png" alt></a>
+            <div class="flex flex-wrap flex-col items-center mt-6 py-5 gap-6" id="contenedor">
+              
+                <div
+                    class="bg-forest flex border-[2px] border-black w-[450px] h-[50px] justify-center items-center rounded-md">
                     <div>
-                        <input class=" rounded-md w-[30vh] text-center" type="text" id="buscador"
-                            placeholder="Buscar..." v-on:input="filtrarPorNombre">
+                        <input class=" rounded-md w-[30vh] text-center" type="text" id="buscador" placeholder="Buscar..."
+                            v-on:input="filtrarPorNombre">
                     </div>
-
                     <div>
-                        <label> Ordenar:</label>
-                        <select name="" id="" v-on:input="selec">
-                            <option value="menor">Precio de menor a mayor</option>
-                            <option value="mayor">Precio de mayor a menor</option>
-                            <option value="alfabetico">Orden alfabetico</option>
+                        <select class="w-4/5 p-2 mx-5 rounded-md" name="" id="select" v-on:input="selec">
+                            <option class="font-sans" value="menor">Menor precio</option>
+                            <option class="font-sans" value="mayor">Mayor precio</option>
+                            <option class="font-sans" value="alfabetico">Orden alfabético</option>
                         </select>
                     </div>
+                </div>
 
                 </div>
 
-                <div class="flex flex-wrap gap-6">
+                <div class="flex flex-wrap mt-6 gap-6">
 
                     <template v-if="filtrados.length>0" v-for="juguete in filtrados">
                         <div class=" flex flex-col  bg-white max-w-sm rounded-lg overflow-hidden shadow-lg mx-auto"
