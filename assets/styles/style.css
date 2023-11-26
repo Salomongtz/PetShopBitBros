@@ -94,3 +94,6 @@ div#slider figure {
     font-size: 0;
     animation: 15s slidy infinite;
 }
+input{
+    font-family:garet;
+}
