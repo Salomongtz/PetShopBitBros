@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mundo Peludo</title>
-    <link rel="stylesheet" href="./assets/styles/style.css">
-    <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
 </head>
 
 <body id=app class="bg-sun text-forest">
@@ -46,18 +46,11 @@
                 <a href="./farmacia.html">Farmacia</a>
                 <a href="./jugueteria.html">Juguetes</a>
             </div>
-        </template>     
+        </template>
         <h1 class="text-4xl font-bold">Un rincón de amor para tus mejores amigos de cuatro patas.</h1>
-        <div id="slider">
-            <figure>
-                <a href="../pages/farmacia.html"><img src="./assets/images/farmacia.png" alt></a>
-                <a href="./assets/pages/juguetes.html"><img src="./assets/images/jugueteria.png" alt></a>
-                <a href="./assets/pages/contacto.html"><img src="./assets/images/contacto.png" alt></a>
-            </figure>
-        </div>
 
         <div class="flex  justify-between gap-20 items-center">
-            <form class="border font-sans  w-80 p-2 rounded-md border-green-900 flex flex-col items-center" action=""
+            <form class="border font-sans  w-80 p-2 rounded-md border-forest flex flex-col items-center" action=""
                 method="">
 
                 <legend class="font-semibold">Datos</legend><br>
@@ -85,7 +78,7 @@
 
 
                 <button v-on:click.prevent="mostrarModal" id="btnenviar"
-                    class="bg-green-900 text-white p-3 font-bold rounded-lg">Enviar
+                    class="bg-forest text-white p-3 font-bold rounded-lg">Enviar
                 </button>
 
             </form>
@@ -103,7 +96,7 @@
                     <p>Hola! Gracias por diligenciar tus datos en mundo peludo. Nos pondremos en contacto contigo muy
                         pronto
                         para brindarte toda la información que necesitas. ¡Gracias por tu interés!</p>
-                    <button @click="verModal=false" class="bg-green-900 text-white p-3 font-bold rounded-lg">OK</button>
+                    <button @click="verModal=false" class="bg-forest text-white p-3 font-bold rounded-lg">OK</button>
                 </div>
             </div>
         </template>
