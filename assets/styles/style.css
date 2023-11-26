@@ -25,6 +25,9 @@ a {
     transition: transform 0.2s ease-in-out;
 }
 
+option{
+    font-family: garet;
+}
 
 /* carrusel */
 

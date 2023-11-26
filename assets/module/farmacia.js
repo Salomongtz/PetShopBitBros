@@ -8,6 +8,7 @@ const opt = {
             filtrados: [],
             buscador: "",
             selected: "all",
+            menuOpen: false
         }
     },
 
@@ -52,6 +53,13 @@ const opt = {
             this.filtrados = filtrado
             console.log(this.filtrados)
         }
+    }, mostrarModal(juguete) {
+        this.juguete = juguete
+        this.verModal = true
+    },
+    cerrarModal() {
+        this.juguete = {}
+        this.verModal = false
     },
 }
 
