@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo Peludo</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
+</head>
+
+<body class="bg-sun text-forest " id="app">
+    <header class="bg-forest text-sun font-semibold">
+        <div class="flex items-center justify-around">
+            <a href="../../index.html">
+                <img class="h-20" src="../images/logo.png" alt="logo">
+            </a>
+            <a class="font-extrabold text-2xl" href="../../index.html">Mundo Peludo</a>
+            <div class="text-left hidden md:flex md:text-right mt-3 md:mt-0">
+                <a href="./contacto.html" class="mt-3 md:mx-3">Contacto</a>
+                <a href="./farmacia.html" class="mt-3 md:mx-3">Farmacia</a>
+                <a href="./jugueteria.html" class="mt-3 md:mx-3">Juguetes</a>
+                <a href="./carrito.html" class="mt-3 md:mx-3"><img class="h-6 w-6" src="../images/carrito.png" alt="Carrito"></a>
+            </div>
+            <div @click="menuOpen = !menuOpen" id="menuButton" role="button"
+                class="md:hidden flex flex-col gap-1 pointer w-20 relative items-center justify-center">
+                <div class="h-1 w-8 rounded-sm bg-sun">
+                </div>
+                <div class="h-1 w-8 rounded-sm bg-sun">
+                </div>
+                <div class="h-1 w-8 rounded-sm bg-sun">
+                </div>
+            </div>
+        </div>
+        <template v-if="menuOpen">
+            <div
+                class="p-20 flex text-sun text-3xl flex-col gap-14 items-center bg-forest w-screen h-screen fixed top-0">
+                <button @click="menuOpen=false" class="relative top-1 left-48" type="button">X</button>
+                <a href="./contacto.html">Contacto</a>
+                <a href="./farmacia.html">Farmacia</a>
+                <a href="./jugueteria.html">Juguetes</a>
+                <a href="./carrito.html" class="mt-3 md:mx-3">Carrito</a>
+            </div>
+        </template>
+    </header>
+
+    <main class="container mx-auto px-10 py-20 flex flex-col grow items-center gap-8">
+
+    </main>
+
+    <footer class="text-center bg-forest text-sun">
+        <p>MindHub - Cohort FS052 JAVA - BitBros</p>
+    </footer>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="../../tailwind.config.extension.js"></script>
+    <script type="module" src="../../tailwind.config.js"></script>
+</body>
+
+</html>
