@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
 </head>
 
-<body class="bg-sun text-forest">
+<body id= app class="bg-sun text-forest">
     <header class="bg-forest text-sun font-semibold">
         <div class="text-whitepy-5 px-10 md:flex md:items-center md:justify-between md:px-20">
             <div class="flex items-center justify-between">
@@ -37,18 +37,19 @@
             </figure>
         </div>
 
-        <div  class= "flex  justify-between gap-20 items-center" >
-            <form  class="border h-full w-80 p-2 rounded-md border-green-900 flex flex-col items-center justify-center" action="" method="">
-                <fieldset class="flex flex-col">
-                    <legend>Datos</legend>
+        <div class="flex  justify-between gap-20 items-center">
+            <form class="border font-sans  w-80 p-2 rounded-md border-green-900 flex flex-col items-center" action=""
+                method="">
+             
+                    <legend class="font-semibold">Datos</legend><br>
                     <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" required><br><br>
+                    <input class="rounded-sm" type="text" id="nombre" name="nombre" required><br>
 
                     <label for="apellido">Apellido:</label>
-                    <input type="text" id="apellido" name="apellido" required><br><br>
+                    <input class="rounded-sm" type="text" id="apellido" name="apellido" required><br>
 
                     <label for="telefono">Teléfono:</label>
-                    <input type="tel" id="telefono" name="telefono" required><br><br>
+                    <input class="rounded-sm" type="tel" id="telefono" name="telefono" required><br>
 
                     <label for="mascota">Mascota:</label>
                     <select id="mascota" name="mascota">
@@ -58,19 +59,24 @@
                         <option value="otro">Conejo</option>
                         <option value="otro">Ave</option>
                         <option value="otro">Otro</option>
-                    </select><br><br>
+                    </select><br>
 
                     <label for="comentario">Comentario:</label><br>
-                    <textarea id="comentario" name="comentario"></textarea><br><br>
-                </fieldset>
-                <input class="bg-green-900 rounded text-white p-2" type="submit" value="Enviar">
+                    <textarea class="h-28 w-48 rounded-sm" id="comentario" name="comentario"></textarea><br>
+               
+              
+                <button v-on:click="mostrarModal" id="btnenviar" class="bg-green-900 text-white p-3 font-bold rounded-lg" >Enviar</button>
+                
             </form>
-          <article class="text-center flex gap-3 flex-col">
-          <h2 class="font-bold "> Nuestra Ubicación</h2>
-          <iframe class=" rounded-lg items-center " src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3405.1022395076698!2d-64.20285802358327!3d-31.411309096007376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432988145269a89%3A0xb96c029e26e0abd6!2sC.%20Paraguay%205%2C%20X5000%20C%C3%B3rdoba%2C%20Argentina!5e0!3m2!1ses-419!2sco!4v1700840406373!5m2!1ses-419!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </article>
+            <article class="text-center flex gap-3 flex-col">
+                <h2 class="font-bold text-3xl "> Nuestra Ubicación</h2>
+                <iframe class="font-sans  flex flex-col items-center rounded-lg "
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3405.1022395076698!2d-64.20285802358327!3d-31.411309096007376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432988145269a89%3A0xb96c029e26e0abd6!2sC.%20Paraguay%205%2C%20X5000%20C%C3%B3rdoba%2C%20Argentina!5e0!3m2!1ses-419!2sco!4v1700840406373!5m2!1ses-419!2sco"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </article>
         </div>
-    
+
     </main>
 
     <footer class="text-center bg-forest text-sun">
@@ -81,29 +87,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script type="module" src="../../tailwind.config.extension.js"></script>
     <script type="module" src="../../tailwind.config.js"></script>
-    
+    <script src="./contacto.js"></script>
+
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
