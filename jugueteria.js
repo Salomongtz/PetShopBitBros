@@ -10,9 +10,10 @@ const app = createApp({
             productosOrdenados: [],
             verModal: false,
             juguete: {},
-            buscador:'',
-            filtrados:[],
-            menuOpen: false
+            buscador: '',
+            filtrados: [],
+            menuOpen: false,
+            carrito: JSON.parse(localStorage.getItem("carrito")) || []
         }
     },
     beforeCreate() {
@@ -23,15 +24,19 @@ const app = createApp({
                 this.juguetes = data.filter(item => item.categoria == "jugueteria")
                 // this.productosOrdenados= this.juguetes
                 console.log(this.juguetes)
-                this.filtrados= data.filter(item => item.categoria == "jugueteria")
-                
-                
+                this.filtrados = data.filter(item => item.categoria == "jugueteria")
+
+
 
             })
             .catch(error => console.error(error))
     },
 
     methods: {
+        agregarAlCarrito(producto) {
+            this.carrito.push(producto)
+            localStorage.setItem("carrito", JSON.stringify(this.carrito))
+        },
         mostrarModal(juguete) {
             this.juguete = juguete
             this.verModal = true
@@ -59,17 +64,17 @@ const app = createApp({
             }
 
         },
-        filtrarPorNombre(event){
-            this.buscador= event.target.value
+        filtrarPorNombre(event) {
+            this.buscador = event.target.value
             this.filter()
             console.log(this.buscador)
-            },
-        filter(){
-            const filtrado= this.juguetes.filter(juguete=>juguete.producto.toLowerCase().includes(this.buscador.toLowerCase()))
-            this.filtrados= filtrado
+        },
+        filter() {
+            const filtrado = this.juguetes.filter(juguete => juguete.producto.toLowerCase().includes(this.buscador.toLowerCase()))
+            this.filtrados = filtrado
             console.log(this.filtrados)
         }
 
-       },
+    },
 })
 app.mount("#app")

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mundo Peludo</title>
+    <title>Carrito - Mundo Peludo</title>
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
 </head>
@@ -20,7 +20,8 @@
                 <a href="./contacto.html" class="mt-3 md:mx-3">Contacto</a>
                 <a href="./farmacia.html" class="mt-3 md:mx-3">Farmacia</a>
                 <a href="./jugueteria.html" class="mt-3 md:mx-3">Juguetes</a>
-                <a href="./carrito.html" class="mt-3 md:mx-3"><img class="h-6 w-6" src="../images/carrito.png" alt="Carrito"></a>
+                <a href="./carrito.html" class="mt-3 md:mx-3"><img class="h-6 w-6" src="../images/carrito.png"
+                        alt="Carrito"></a>
             </div>
             <div @click="menuOpen = !menuOpen" id="menuButton" role="button"
                 class="md:hidden flex flex-col gap-1 pointer w-20 relative items-center justify-center">
@@ -45,7 +46,62 @@
     </header>
 
     <main class="container mx-auto px-10 py-20 flex flex-col grow items-center gap-8">
+        <div>
 
+
+            <div class="container mx-auto mt-8">
+                <h1 class="text-2xl font-bold mb-4">Carrito de Compras</h1>
+
+                <!-- Lista de productos en el carrito -->
+                <div class="flex gap-4 flex-col">
+                    <template v-if="filtrados.length>0" v-for="producto of filtrados">
+                        <div class="bg-white p-4 rounded shadow flex gap-4 md:w-[600px]">
+                            <div class="flex w-40">
+                                <img class="object-contain h-40 w-40" :src="producto.imagen" alt="">
+                            </div>
+                            <div class="flex flex-col w-full gap-2">
+                                <h2 class="text-lg font-semibold mb-2">{{producto.producto}}</h2>
+                                <p class="text-forest font-bold">{{moneda(producto.precio)}} </p>
+                                <div class="flex items-center w-full">
+                                    <span v-if="producto.disponibles >1">Cantidad: </span>
+                                    <select v-if="producto.disponibles > 1" v-model="cantidad" class="font-sans text-center"
+                                        name="cantidad" id="cantidad">
+                                        <template @click="actualizarCarrito(producto, cantidad)" v-if="producto.disponibles > 1" v-for="i in producto.disponibles">
+                                            <option class="font-sans" value="i">{{i}}</option>
+                                        </template>
+                                    </select>
+                                    <span v-if="producto.disponibles > 5"></span>
+                                    <span v-if="producto.disponibles == 1" class="text-red-500">¡Última unidad!</span>
+                                    <span v-else-if="producto.disponibles <= 5" class="text-red-500">¡Casi
+                                        agotado!</span>
+                                </div>
+                                <button @click="eliminarDelCarrito(producto)"
+                                    class="bg-red-500 text-white px-4 py-2 mt-2 rounded">Eliminar</button>
+                            </div>
+                        </div>
+                    </template>
+                    <template v-else>
+                        <h2>No hay productos en el carrito</h2>
+                    </template>
+
+
+                    <!-- Repite este bloque para más productos en el carrito -->
+
+                </div>
+
+                <!-- Total del carrito -->
+                <div class="mt-8">
+                    <h2 class="text-xl font-bold mb-2">Total del Carrito</h2>
+                    <p class="text-gray-600">Subtotal: {{moneda(total)}}</p>
+                    <p class="text-gray-600">Envío: {{moneda(envio)}}</p>
+                    <p class="text-2xl font-bold mt-2">Total: {{moneda(total+envio)}}</p>
+                </div>
+
+                <!-- Botón de compra -->
+                <button class="bg-forest text-white px-6 py-3 mt-8 rounded">Realizar Compra</button>
+
+            </div>
+        </div>
     </main>
 
     <footer class="text-center bg-forest text-sun">
@@ -56,6 +112,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script type="module" src="../../tailwind.config.extension.js"></script>
     <script type="module" src="../../tailwind.config.js"></script>
+    <script type="module" src="../../carrito.js"></script>
 </body>
 
 </html>

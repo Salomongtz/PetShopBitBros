@@ -11,12 +11,7 @@
 body {
     font-family: "bubblebody";
 }
-
-p {
-    font-family: garet;
-}
-
-a {
+select, option, p, a, span{
     font-family: garet;
 }
 

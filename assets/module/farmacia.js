@@ -10,7 +10,8 @@ const opt = {
             selected: "all",
             menuOpen: false,
             farmaco: "",
-            verModal: false
+            verModal: false,
+            carrito: JSON.parse(localStorage.getItem("carrito")) || []
         }
     },
 
@@ -27,7 +28,11 @@ const opt = {
     },
 
     methods: {
-        select(event) {
+        agregarAlCarrito(farmaco) {
+            this.carrito.push(farmaco)
+            localStorage.setItem("carrito", JSON.stringify(this.carrito))
+        }
+        , select(event) {
             this.selected = event.target.value
             console.log("Seleccionado:", this.ordenSeleccionado)
             if (this.selected == "menor") {
