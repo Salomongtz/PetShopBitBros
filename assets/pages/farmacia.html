@@ -68,7 +68,7 @@
             <div class="flex flex-wrap mt-6 gap-6">
                 <template v-if="filtrados.length > 0" v-for="farmaco of filtrados">
                     <div id="farmaco._id"
-                        class=" flex flex-col  bg-white max-w-sm rounded-lg overflow-hidden shadow-lg mx-auto">
+                        class="flex flex-col card bg-white max-w-sm rounded-lg overflow-hidden shadow-lg mx-auto">
                         <img @click="mostrarModal(farmaco)"
                             class="cursor-pointer h-2/3 w-full object-contain flex self-center"
                             v-bind:src="farmaco.imagen" alt="producto" />
@@ -81,7 +81,7 @@
                                 <span v-else-if="farmaco.disponibles <=5" class="text-red-500">¡Casi agotado!</span>
                             </h5>
                             <button v-on:click="mostrarModal(farmaco)"
-                                class="h-14 px-6 font-semibold rounded-md border border-forest text-forest"
+                                class="h-14 hover:bg-grey-600 px-6 font-semibold rounded-md border border-forest text-forest"
                                 type="button">Detalles</button>
                             <div class="flex gap-1">
                                 <button v-if="farmaco.disponibles > 0"
