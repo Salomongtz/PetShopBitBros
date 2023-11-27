@@ -49,9 +49,12 @@ const app = createApp({
         cerrarModal() {
             this.juguete = {}
             this.verModal = false
+            this.verCompra = false
         },
-        comprar() {
+        comprar(juguete) {
             this.verCompra = true
+            this.verModal = false
+            this.juguete = juguete
         },
         selec(event) {
             this.selected = event.target.value

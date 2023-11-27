@@ -10,6 +10,7 @@ const app = createApp({
             subtotal: 0,
             envio: 0,
             menuOpen: false,
+            verCompra: false
         }
     },
     beforeCreate() {

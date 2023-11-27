@@ -70,8 +70,11 @@ const opt = {
         cerrarModal() {
             this.farmaco = {}
             this.verModal = false
-        }, comprar() {
             this.verCompra = true
+        }, comprar(farmaco) {
+            this.verCompra = true
+            this.verModal = false
+            this.farmaco = farmaco
         }
     }
 }
