@@ -11,12 +11,7 @@
 body {
     font-family: "bubblebody";
 }
-
-p {
-    font-family: garet;
-}
-
-a {
+select, option, p, a, span{
     font-family: garet;
 }
 
@@ -24,6 +19,12 @@ a {
     transform: scale(1.05);
     transition: transform 0.2s ease-in-out;
 }
+
+option{
+    font-family: garet;
+}
+
+/* carrusel */
 
 h3,
 h4,
@@ -90,4 +91,7 @@ div#slider figure {
     text-align: left;
     font-size: 0;
     animation: 15s slidy infinite;
+}
+input{
+    font-family:garet;
 }

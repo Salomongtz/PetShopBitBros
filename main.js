@@ -1,7 +1,9 @@
 const { createApp } = Vue
 const optionsVue = {
     data() {
-
+        return {
+            menuOpen: false
+        }
     }, beforeCreate() {
         console.log('beforeCreate');
         fetch('https://moviestack.onrender.com/api/petshop')
@@ -11,7 +13,7 @@ const optionsVue = {
             }).catch(error => {
                 console.log(error);
             })
-    }
+    },
 }
 
 const app = createApp(optionsVue)
