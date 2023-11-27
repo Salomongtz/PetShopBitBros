@@ -46,17 +46,16 @@
     </header>
 
     <main class="container mx-auto px-10 py-20 flex flex-col min-h-[90vh] items-center gap-8">
+
         <div>
-
-
             <div class="container mx-auto mt-8">
                 <h1 class="text-2xl font-bold mb-4">Carrito de Compras</h1>
 
                 <!-- Lista de productos en el carrito -->
                 <div class="flex gap-4 flex-col">
                     <template v-if="filtrados.length>0" v-for="producto of filtrados">
-                        {{producto.cantidad=1}}
-                            {{console.log(producto)}}
+                        
+                        {{console.log(producto)}}
                         <div class="bg-white p-4 rounded shadow flex gap-4 md:w-[600px]">
                             <div class="flex w-40">
                                 <img class="object-contain h-40 w-40" :src="producto.imagen" alt="">
@@ -73,13 +72,14 @@
                                         </template>
                                     </select> -->
                                     <div class=" mx-2 flex gap-2 items-center">
-                                        <button v-if="producto.disponibles > 1 && cantidad>0"
+                                        <button v-if="producto.disponibles > 1 && producto.cantidad>0"
                                             @click="restar(producto)"
                                             class="flex items-center text-center justify-center font-sans text-xl bg-forest rounded-full text-sun w-6 h-6"
                                             type="button">-</button>
                                         <span class="font-sans text-xl" v-if="producto.disponibles > 1"
-                                            :value="cantidad">{{producto.cantidad}}</span>
-                                        <button v-if="producto.disponibles > 1 && cantidad<=producto.disponibles"
+                                            :value="producto.cantidad">{{producto.cantidad}}</span>
+                                        <button
+                                            v-if="producto.disponibles > 1 && producto.cantidad<=producto.disponibles"
                                             @click="sumar(producto)"
                                             class="flex items-center justify-center text-center font-sans text-xl bg-forest rounded-full text-sun w-6 h-6"
                                             type="button">+</button>
@@ -116,6 +116,7 @@
 
             </div>
         </div>
+
     </main>
 
     <footer class="text-center bg-forest text-sun">

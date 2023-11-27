@@ -18,7 +18,9 @@ const app = createApp({
             .then((data) => {
                 this.carrito = JSON.parse(localStorage.getItem("carrito")) || []
                 this.filtrados = data.filter(item => this.carrito.includes(item._id))
-
+                for (let i = 0; i < this.filtrados.length; i++) {
+                    this.filtrados[i].cantidad = 1
+                }
                 console.log(this.filtrados);
                 this.total = this.filtrados.reduce((total, producto) => total + producto.precio, 0)
             })
@@ -28,8 +30,13 @@ const app = createApp({
         sumar(producto) {
             if (producto.cantidad <= producto.disponibles) {
                 producto.cantidad++
+                console.log(producto.cantidad)
                 this.total += producto.precio
             }
+        },
+        actualizarCarrito() {
+            localStorage.setItem("carrito", JSON.stringify(this.carrito))
+            this.filtrados = this.filtrados.filter(item => this.carrito.includes(item._id))
         },
         restar(producto) {
             if (producto.cantidad > 1) {
