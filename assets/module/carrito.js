@@ -8,10 +8,8 @@ const app = createApp({
             filtrados: [],
             carrito: [],
             total: 0,
-            envio: 0, 
+            envio: 0,
             menuOpen: false,
-            cantidad:1
-
         }
     },
     beforeCreate() {
@@ -20,14 +18,24 @@ const app = createApp({
             .then((data) => {
                 this.carrito = JSON.parse(localStorage.getItem("carrito")) || []
                 this.filtrados = data.filter(item => this.carrito.includes(item._id))
+
+                console.log(this.filtrados);
                 this.total = this.filtrados.reduce((total, producto) => total + producto.precio, 0)
             })
             .catch(error => console.error(error))
     },
     methods: {
-        agregarAlCarrito(producto) {
-            this.carrito.push(producto)
-            localStorage.setItem("carrito", JSON.stringify(this.carrito))
+        sumar(producto) {
+            if (producto.cantidad <= producto.disponibles) {
+                producto.cantidad++
+                this.total += producto.precio
+            }
+        },
+        restar(producto) {
+            if (producto.cantidad > 1) {
+                producto.cantidad--
+                this.total -= producto.precio
+            }
         },
         eliminarDelCarrito(producto) {
             this.carrito = this.carrito.filter(item => item != producto._id)
@@ -37,24 +45,9 @@ const app = createApp({
             this.filtrados = this.filtrados.filter(item => this.carrito.includes(item._id))
             this.total = this.filtrados.reduce((total, producto) => total + producto.precio, 0)
         },
-        actualizarCarrito(producto, cantidad) {
-            const productoEnCarrito = this.carrito.find(item => item.id === producto.id);
-
-            // Si el producto no está en el carrito, agrégalo
-            if (!productoEnCarrito) {
-                this.carrito.push({
-                    id: producto.id,
-                    nombre: producto.producto,
-                    precio: producto.precio,
-                    cantidad: nuevaCantidad,
-                });
-            } else {
-                // Si el producto ya está en el carrito, actualiza la cantidad
-                productoEnCarrito.cantidad = nuevaCantidad;
-            }
-
-            // Puedes realizar otras acciones según tus necesidades, como recalcular el total
-            this.calcularTotal();
+        calcularTotal(precio, cantidad) {
+            const nuevoPrecio = cantidad * precio
+            this.total = this.filtrados.reduce((total) => total + nuevoPrecio, 0)
         },
         moneda(valor) {
             return valor.toLocaleString('es-AR', { style: 'currency', currency: 'ARS' });

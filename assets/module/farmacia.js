@@ -28,8 +28,12 @@ const opt = {
     },
 
     methods: {
-        agregarAlCarrito(farmaco) {
-            this.carrito.push(farmaco)
+        agregarAlCarrito(producto) {
+            if (!this.carrito.includes(producto)) {
+                producto.cantidad = 1
+                console.log(producto);
+                this.carrito.push(producto._id)
+            }
             localStorage.setItem("carrito", JSON.stringify(this.carrito))
         }
         , select(event) {
@@ -66,7 +70,7 @@ const opt = {
         cerrarModal() {
             this.farmaco = {}
             this.verModal = false
-        },comprar() {
+        }, comprar() {
             this.verCompra = true
         }
     }

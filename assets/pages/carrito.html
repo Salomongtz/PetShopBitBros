@@ -45,7 +45,7 @@
         </template>
     </header>
 
-    <main class="container mx-auto px-10 py-20 flex flex-col grow items-center gap-8">
+    <main class="container mx-auto px-10 py-20 flex flex-col min-h-[90vh] items-center gap-8">
         <div>
 
 
@@ -55,21 +55,35 @@
                 <!-- Lista de productos en el carrito -->
                 <div class="flex gap-4 flex-col">
                     <template v-if="filtrados.length>0" v-for="producto of filtrados">
+                        {{producto.cantidad=1}}
+                            {{console.log(producto)}}
                         <div class="bg-white p-4 rounded shadow flex gap-4 md:w-[600px]">
                             <div class="flex w-40">
                                 <img class="object-contain h-40 w-40" :src="producto.imagen" alt="">
                             </div>
                             <div class="flex flex-col w-full gap-2">
-                                <h2 class="text-lg font-semibold mb-2">{{producto.producto}}</h2>
+                                <h3 class="text-lg font-extrabold mb-2">{{producto.producto}}</h3>
                                 <p class="text-forest font-bold">{{moneda(producto.precio)}} </p>
                                 <div class="flex items-center w-full">
                                     <span v-if="producto.disponibles >1">Cantidad: </span>
-                                    <select v-if="producto.disponibles > 1" v-model="cantidad" class="font-sans text-center"
+                                    <!-- <select v-if="producto.disponibles > 1" class="font-sans text-center"
                                         name="cantidad" id="cantidad">
-                                        <template @click="actualizarCarrito(producto, cantidad)" v-if="producto.disponibles > 1" v-for="i in producto.disponibles">
-                                            <option  class="font-sans" value="i">{{i}}</option>
+                                        <template v-if="producto.disponibles > 1" v-for="i in producto.disponibles">
+                                            <option @click="total+=producto.precio*i" class="font-sans" :value="i">{{i}}</option>
                                         </template>
-                                    </select>
+                                    </select> -->
+                                    <div class=" mx-2 flex gap-2 items-center">
+                                        <button v-if="producto.disponibles > 1 && cantidad>0"
+                                            @click="restar(producto)"
+                                            class="flex items-center text-center justify-center font-sans text-xl bg-forest rounded-full text-sun w-6 h-6"
+                                            type="button">-</button>
+                                        <span class="font-sans text-xl" v-if="producto.disponibles > 1"
+                                            :value="cantidad">{{producto.cantidad}}</span>
+                                        <button v-if="producto.disponibles > 1 && cantidad<=producto.disponibles"
+                                            @click="sumar(producto)"
+                                            class="flex items-center justify-center text-center font-sans text-xl bg-forest rounded-full text-sun w-6 h-6"
+                                            type="button">+</button>
+                                    </div>
                                     <span v-if="producto.disponibles > 5"></span>
                                     <span v-if="producto.disponibles == 1" class="text-red-500">¡Última unidad!</span>
                                     <span v-else-if="producto.disponibles <= 5" class="text-red-500">¡Casi

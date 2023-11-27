@@ -13,7 +13,7 @@ const app = createApp({
             buscador: '',
             filtrados: [],
             menuOpen: false,
-            verCompra:false,
+            verCompra: false,
             carrito: JSON.parse(localStorage.getItem("carrito")) || []
         }
     },
@@ -35,7 +35,11 @@ const app = createApp({
 
     methods: {
         agregarAlCarrito(producto) {
-            this.carrito.push(producto)
+            if (!this.carrito.includes(producto)) {
+                producto.cantidad = 1
+                console.log(producto);
+                this.carrito.push(producto._id)
+            }
             localStorage.setItem("carrito", JSON.stringify(this.carrito))
         },
         mostrarModal(juguete) {
@@ -46,7 +50,7 @@ const app = createApp({
             this.juguete = {}
             this.verModal = false
         },
-        comprar(){
+        comprar() {
             this.verCompra = true
         },
         selec(event) {
