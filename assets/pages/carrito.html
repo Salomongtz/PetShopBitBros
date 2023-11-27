@@ -106,9 +106,9 @@
                 <!-- Total del carrito -->
                 <div class="mt-8">
                     <h2 class="text-xl font-bold mb-2">Total del Carrito</h2>
-                    <p class="text-gray-600">Subtotal: {{moneda(total)}}</p>
-                    <p class="text-gray-600">Envío: {{moneda(envio)}}</p>
-                    <p class="text-2xl font-bold mt-2">Total: {{moneda(total+envio)}}</p>
+                    <p class="text-gray-600">Subtotal: {{moneda(subtotal)}}</p>
+                    <p class="text-gray-600" :value="calcularEnvio()">Envío: {{moneda(envio)}}</p>
+                    <p class="text-2xl font-bold mt-2">Total: {{moneda(subtotal+envio)}}</p>
                 </div>
 
                 <!-- Botón de compra -->
