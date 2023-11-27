@@ -8,8 +8,10 @@ const app = createApp({
             filtrados: [],
             carrito: [],
             total: 0,
-            envio: 0,
-            
+            envio: 0, 
+            menuOpen: false,
+            cantidad:1
+
         }
     },
     beforeCreate() {
@@ -28,7 +30,7 @@ const app = createApp({
             localStorage.setItem("carrito", JSON.stringify(this.carrito))
         },
         eliminarDelCarrito(producto) {
-            this.carrito = this.carrito.filter(producto => producto !== producto._id)
+            this.carrito = this.carrito.filter(item => item != producto._id)
             console.log(this.carrito);
             localStorage.setItem("carrito", JSON.stringify(this.carrito))
             console.log("eliminar " + producto._id);
@@ -36,14 +38,27 @@ const app = createApp({
             this.total = this.filtrados.reduce((total, producto) => total + producto.precio, 0)
         },
         actualizarCarrito(producto, cantidad) {
-            this.total = this.filtrados.reduce((total, producto) => total + producto.precio, 0)
-            localStorage.setItem("carrito", JSON.stringify(this.carrito))
+            const productoEnCarrito = this.carrito.find(item => item.id === producto.id);
+
+            // Si el producto no está en el carrito, agrégalo
+            if (!productoEnCarrito) {
+                this.carrito.push({
+                    id: producto.id,
+                    nombre: producto.producto,
+                    precio: producto.precio,
+                    cantidad: nuevaCantidad,
+                });
+            } else {
+                // Si el producto ya está en el carrito, actualiza la cantidad
+                productoEnCarrito.cantidad = nuevaCantidad;
+            }
+
+            // Puedes realizar otras acciones según tus necesidades, como recalcular el total
+            this.calcularTotal();
         },
         moneda(valor) {
             return valor.toLocaleString('es-AR', { style: 'currency', currency: 'ARS' });
         }
-    }, computed: {
-        total() { }
-    }
+    },
 })
 app.mount("#app")
