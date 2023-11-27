@@ -13,6 +13,7 @@ const app = createApp({
             buscador: '',
             filtrados: [],
             menuOpen: false,
+            verCompra:false,
             carrito: JSON.parse(localStorage.getItem("carrito")) || []
         }
     },
@@ -44,6 +45,9 @@ const app = createApp({
         cerrarModal() {
             this.juguete = {}
             this.verModal = false
+        },
+        comprar(){
+            this.verCompra = true
         },
         selec(event) {
             this.selected = event.target.value

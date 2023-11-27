@@ -81,7 +81,7 @@
                                 <span v-else-if="farmaco.disponibles <=5" class="text-red-500">¡Casi agotado!</span>
                             </h5>
                             <button v-on:click="mostrarModal(farmaco)"
-                                class="h-14 hover:bg-grey-600 px-6 font-semibold rounded-md border border-forest text-forest"
+                                class="h-14 hover:bg-sunset px-6 font-semibold rounded-md border border-forest text-forest"
                                 type="button">Detalles</button>
                             <div class="flex gap-1">
                                 <button v-if="farmaco.disponibles > 0"
@@ -95,7 +95,7 @@
                                     No disponible
                                 </button>
                                 <button v-if="farmaco.disponibles > 0"
-                                    class="h-14 px-6 font-semibold rounded-md border border-forest text-forest"
+                                    class="h-14 hover:bg-sunset px-6 font-semibold rounded-md border border-forest text-forest"
                                     @click.prevent="agregarAlCarrito(farmaco._id)" type="button">
                                     Añadir al carrito
                                 </button>
@@ -109,6 +109,72 @@
                     </div>
                 </template>
             </div>
+
+            <template v-if="verCompra">
+                <div class="p-20 flex justify-center items-center bg-black/50 w-screen h-screen fixed top-0">
+                    <div class="bg-sun px-10 h-full flex flex-col justify-center items-center">
+                        <div class="flex font-sans h-full w-full items-center flex-col md:flex-row justify-evenly">
+                            <div class="flex-none w-1/3 relative">
+                                <img :src="farmaco.imagen" :alt="farmaco.producto"
+                                    class=" inset-0 w-full max-h-[450px] object-contain" loading="lazy" />
+                            </div>
+                            <form class="flex-auto p-6">
+                                <div class="flex flex-col flex-wrap">
+                                    <h5 class="flex-auto text-4xl font-semibold text-forest">
+                                        {{farmaco.producto}}
+                                    </h5>
+
+                                    <div class="w-full flex-none text-sm font-medium text-slate-700 mt-2">
+                                        Disponibles: {{farmaco.disponibles}} <span v-if="farmaco.disponibles == 0"
+                                            class="text-red-500">Sin stock</span>
+
+                                        <span v-else-if="farmaco.disponibles <=5" class="text-red-500">¡Casi
+                                            agotado!</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-slate-700">
+                                            {{farmaco.descripcion}}
+                                        </p>
+                                    </div>
+                                    <div class="text-lg font-semibold text-slate-500">
+                                        Precio: ${{farmaco.precio}}
+                                    </div>
+                                </div>
+
+                                <div class="flex space-x-4 flex-wrap mb-6 text-sm font-medium">
+                                    <div class="flex-auto md:flex-row flex-col gap-4 items-center flex space-x-4">
+                                        <button v-if="farmaco.disponibles > 0"
+                                            class="h-10 px-6 font-semibold rounded-md bg-forest text-sun"
+                                            @click.prevent="comprar" type="submit">
+                                            Comprar ahora
+                                        </button>
+                                        <button v-else
+                                            class="h-10 px-6 font-semibold rounded-md border border-slate-600 text-slate-600 cursor-not-allowed"
+                                            disabled type="button">
+                                            No disponible
+                                        </button>
+                                        <button v-if="farmaco.disponibles > 0"
+                                            class="h-10 px-6 font-semibold rounded-md border border-forest text-forest"
+                                            @click.prevent="agregarAlCarrito(farmaco._id)" type="button">
+                                            Añadir al carrito
+                                        </button>
+                                        <button v-else
+                                            class="h-10 px-6 font-semibold rounded-md border border-slate-600 text-slate-600 cursor-not-allowed"
+                                            disabled type="button">
+                                            No disponible
+                                        </button>
+                                        <button @click="cerrarModal"
+                                            class="h-10 px-6 font-semibold rounded-md border border-forest text-forest"
+                                            type="button">
+                                            Volver
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </template>
 
             <template v-if="verModal">
                 <div class="p-20 flex justify-center items-center bg-black/50 w-screen h-screen fixed top-0">

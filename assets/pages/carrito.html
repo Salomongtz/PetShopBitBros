@@ -67,7 +67,7 @@
                                     <select v-if="producto.disponibles > 1" v-model="cantidad" class="font-sans text-center"
                                         name="cantidad" id="cantidad">
                                         <template @click="actualizarCarrito(producto, cantidad)" v-if="producto.disponibles > 1" v-for="i in producto.disponibles">
-                                            <option class="font-sans" value="i">{{i}}</option>
+                                            <option  class="font-sans" value="i">{{i}}</option>
                                         </template>
                                     </select>
                                     <span v-if="producto.disponibles > 5"></span>

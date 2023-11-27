@@ -11,6 +11,7 @@ const opt = {
             menuOpen: false,
             farmaco: "",
             verModal: false,
+            verCompra: false,
             carrito: JSON.parse(localStorage.getItem("carrito")) || []
         }
     },
@@ -21,7 +22,6 @@ const opt = {
             .then((data) => {
                 console.log(data)
                 this.farmacos = data.filter(item => item.categoria == "farmacia");
-                console.log(this.farmacos)
                 this.filtrados = data.filter(item => item.categoria == "farmacia");
             })
             .catch(error => console.error(error));
@@ -66,7 +66,9 @@ const opt = {
         cerrarModal() {
             this.farmaco = {}
             this.verModal = false
-        },
+        },comprar() {
+            this.verCompra = true
+        }
     }
 }
 

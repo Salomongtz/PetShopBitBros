@@ -9,6 +9,7 @@ const app = createApp({
             carrito: [],
             total: 0,
             envio: 0,
+            
         }
     },
     beforeCreate() {
