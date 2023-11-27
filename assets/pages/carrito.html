@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - Mundo Peludo</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
+</head>
+
+<body class="bg-sun text-forest " id="app">
+    <header class="bg-forest text-sun font-semibold">
+        <div class="flex items-center justify-around">
+            <a href="../../index.html">
+                <img class="h-20" src="../images/logo.png" alt="logo">
+            </a>
+            <a class="font-extrabold text-2xl" href="../../index.html">Mundo Peludo</a>
+            <div class="text-left hidden md:flex md:text-right mt-3 md:mt-0">
+                <a href="./contacto.html" class="mt-3 md:mx-3">Contacto</a>
+                <a href="./farmacia.html" class="mt-3 md:mx-3">Farmacia</a>
+                <a href="./jugueteria.html" class="mt-3 md:mx-3">Juguetes</a>
+                <a href="./carrito.html" class="mt-3 md:mx-3"><img class="h-6 w-6" src="../images/carrito.png"
+                        alt="Carrito"></a>
+            </div>
+            <div @click="menuOpen = !menuOpen" id="menuButton" role="button"
+                class="md:hidden flex flex-col gap-1 pointer w-20 relative items-center justify-center">
+                <div class="h-1 w-8 rounded-sm bg-sun">
+                </div>
+                <div class="h-1 w-8 rounded-sm bg-sun">
+                </div>
+                <div class="h-1 w-8 rounded-sm bg-sun">
+                </div>
+            </div>
+        </div>
+        <template v-if="menuOpen">
+            <div
+                class="p-20 flex text-sun text-3xl flex-col gap-14 items-center bg-forest w-screen h-screen fixed top-0">
+                <button @click="menuOpen=false" class="relative top-1 left-48" type="button">X</button>
+                <a href="./contacto.html">Contacto</a>
+                <a href="./farmacia.html">Farmacia</a>
+                <a href="./jugueteria.html">Juguetes</a>
+                <a href="./carrito.html" class="mt-3 md:mx-3">Carrito</a>
+            </div>
+        </template>
+    </header>
+
+    <main class="container mx-auto px-10 py-20 flex flex-col min-h-[90vh] items-center gap-8">
+
+        <div>
+            <div class="container mx-auto mt-8">
+                <h1 class="text-2xl font-bold mb-4">Carrito de Compras</h1>
+
+                <!-- Lista de productos en el carrito -->
+                <div class="flex gap-4 flex-col">
+                    <template v-if="filtrados.length>0" v-for="producto of filtrados">
+
+                        {{console.log(producto)}}
+                        <div class="bg-white p-4 rounded shadow flex gap-4 md:w-[600px]">
+                            <div class="flex w-40">
+                                <img class="object-contain h-40 w-40" :src="producto.imagen" alt="">
+                            </div>
+                            <div class="flex flex-col w-full gap-2">
+                                <h3 class="text-lg font-extrabold mb-2">{{producto.producto}}</h3>
+                                <p class="text-forest font-bold">{{moneda(producto.precio)}} </p>
+                                <div class="flex items-center w-full">
+                                    <span v-if="producto.disponibles >1">Cantidad: </span>
+                                    <!-- <select v-if="producto.disponibles > 1" class="font-sans text-center"
+                                        name="cantidad" id="cantidad">
+                                        <template v-if="producto.disponibles > 1" v-for="i in producto.disponibles">
+                                            <option @click="total+=producto.precio*i" class="font-sans" :value="i">{{i}}</option>
+                                        </template>
+                                    </select> -->
+                                    <div class=" mx-2 flex gap-2 items-center">
+                                        <button v-if="producto.disponibles > 1 && producto.cantidad>0"
+                                            @click="restar(producto)"
+                                            class="flex items-center text-center justify-center font-sans text-xl bg-forest rounded-full text-sun w-6 h-6"
+                                            type="button">-</button>
+                                        <span class="font-sans text-xl" v-if="producto.disponibles > 1"
+                                            :value="producto.cantidad">{{producto.cantidad}}</span>
+                                        <button
+                                            v-if="producto.disponibles > 1 && producto.cantidad<=producto.disponibles"
+                                            @click="sumar(producto)"
+                                            class="flex items-center justify-center text-center font-sans text-xl bg-forest rounded-full text-sun w-6 h-6"
+                                            type="button">+</button>
+                                    </div>
+                                    <span v-if="producto.disponibles > 5"></span>
+                                    <span v-if="producto.disponibles == 1" class="text-red-500">¡Última unidad!</span>
+                                    <span v-else-if="producto.disponibles <= 5" class="text-red-500">¡Casi
+                                        agotado!</span>
+                                </div>
+                                <button @click="eliminarDelCarrito(producto)"
+                                    class="bg-red-500 text-white px-4 py-2 mt-2 rounded">Eliminar</button>
+                            </div>
+                        </div>
+                    </template>
+                    <template v-else>
+                        <h2>No hay productos en el carrito</h2>
+                    </template>
+
+
+                    <!-- Repite este bloque para más productos en el carrito -->
+
+                </div>
+
+                <!-- Total del carrito -->
+                <div class="mt-8">
+                    <h2 class="text-xl font-bold mb-2">Total del Carrito</h2>
+                    <p class="text-gray-600">Subtotal: {{moneda(subtotal)}}</p>
+                    <p class="text-gray-600" :value="calcularEnvio()">Envío: {{moneda(envio)}}</p>
+                    <p class="text-2xl font-bold mt-2">Total: {{moneda(subtotal+envio)}}</p>
+                </div>
+
+                <!-- Botón de compra -->
+                <button @click="verCompra=true" class="bg-forest text-white px-6 py-3 mt-8 rounded">Realizar Compra</button>
+
+            </div>
+        </div>
+        <template v-if="verCompra">
+            <div class="p-20 flex justify-center items-center bg-black/50 w-screen h-screen fixed top-0">
+                <div class="bg-sun px-10 h-full flex flex-col justify-center items-center">
+                    <div class="flex flex-col font-sans h-full w-full items-center justify-evenly">
+                        <div class="flex flex-col items-center gap-10">
+                            <div class="flex flex-col flex-wrap">
+                                <h5 class="flex-auto text-4xl font-semibold text-forest">
+                                    ¡Gracias por tu compra!
+                                </h5>
+                            </div>
+                            <div class="flex space-x-4 flex-wrap mb-6 text-sm font-medium">
+                                <button @click="verCompra=false"
+                                    class="h-10 px-6 font-semibold rounded-md border border-forest text-forest"
+                                    type="button">
+                                    Volver
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex-none w-1/3 h-1/3 relative">
+                            <img src="../images/logo.png" alt="Hola"
+                                class=" inset-0 w-full max-h-[450px] object-contain" loading="lazy" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </main>
+
+    <footer class="text-center bg-forest text-sun">
+        <p>MindHub - Cohort FS052 JAVA - BitBros</p>
+    </footer>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="../../tailwind.config.extension.js"></script>
+    <script type="module" src="../../tailwind.config.js"></script>
+    <script type="module" src="../module/carrito.js"></script>
+</body>
+
+</html>

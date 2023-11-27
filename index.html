@@ -9,40 +9,63 @@
     <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
 </head>
 
-<body class="bg-sun text-forest">
+<body class="bg-sun text-forest" id="app">
     <header class="bg-forest text-sun font-semibold">
-        <div class="text-whitepy-5 px-10 md:flex md:items-center md:justify-between md:px-20">
-            <div class="flex items-center justify-between">
-                <a href="#"><img class="h-20" src="./assets/images/logo.png" alt="logo"></a>
-                <a class="font-extrabold text-2xl" href="#">Mundo Peludo</a>
-                <div class="md:hidden align-middle">
-                    <i class="material-icons align-middle cursor-pointer" @click.prevent="toogle">menu</i>
+        <div class="flex items-center justify-around">
+            <a href="index.html">
+                <img class="h-20" src="./assets/images/logo.png" alt="logo">
+            </a>
+            <a class="font-extrabold text-2xl" href="index.html">Mundo Peludo</a>
+            <div class="text-left hidden md:flex md:text-right mt-3 md:mt-0">
+                <a href="./assets/pages/contacto.html" class="mt-3 md:mx-3">Contacto</a>
+                <a href="./assets/pages/farmacia.html" class="mt-3 md:mx-3">Farmacia</a>
+                <a href="./assets/pages/jugueteria.html" class="mt-3 md:mx-3">Juguetes</a>
+                <a href="./assets/pages/carrito.html" class="mt-3 md:mx-3"><img class="h-6 w-6"
+                        src="./assets/images/carrito.png" alt="Carrito"></a>
+            </div>
+            <div @click="menuOpen = !menuOpen" id="menuButton" role="button"
+                class="md:hidden flex flex-col gap-1 pointer w-20 relative items-center justify-center">
+                <div class="h-1 w-8 rounded-sm bg-sun">
+                </div>
+                <div class="h-1 w-8 rounded-sm bg-sun">
+                </div>
+                <div class="h-1 w-8 rounded-sm bg-sun">
                 </div>
             </div>
-            <div :class="open ? 'block' : 'hidden'" class="flex flex-col text-left md:block md:text-right mt-3 md:mt-0">
-                <a href="./assets/pages/" class="mt-3 md:mx-3">Contacto</a>
-                <a href="#" class="mt-3 md:mx-3">Farmacia</a>
-                <a href="#" class="mt-3 md:mx-3">Juguetes</a>
-            </div>
         </div>
+        <template v-if="menuOpen">
+            <div
+                class=" z-50 p-20 flex text-sun text-3xl flex-col gap-14 items-center bg-forest w-screen h-screen fixed top-0">
+                <button @click="menuOpen=false" class="relative top-1 left-48" type="button">X</button>
+                <a href="./assets/pages/contacto.html">Contacto</a>
+                <a href="./assets/pages/farmacia.html">Farmacia</a>
+                <a href="./assets/pages/jugueteria.html">Juguetes</a>
+                <a href="./assets/pages/carrito.html" class="mt-3 md:mx-3">Carrito</a>
+            </div>
+        </template>
     </header>
 
     <main class="container mx-auto px-10 py-20 flex flex-col items-center gap-8">
-        <h1 class="text-4xl font-bold">Un rincón de amor para tus mejores amigos de cuatro patas.</h1>
-        <div id="slider">
-            <figure>
-                <a href="./assets/pages/farmacia.html"><img src="./assets/images/farmacia.png" alt></a>
-                <a href="./assets/pages/juguetes.html"><img src="./assets/images/jugueteria.png" alt></a>
-                <a href="./assets/pages/contacto.html"><img src="./assets/images/contacto.png" alt></a>
-            </figure>
+        <div class="flex flex-col gap-10">
+            <h1 class="text-4xl font-bold">Un rincón de amor para tus mejores amigos de cuatro patas.</h1>
+            <div class="h-96" id="slider">
+
+                <figure class="z-0">
+                    <a href="./assets/pages/farmacia.html"><img class="h-96" src="./assets/images/1.png" alt></a>
+                    <a href="./assets/pages/jugueteria.html"><img class="h-96" src="./assets/images/2.png" alt></a>
+                    <a href="./assets/pages/contacto.html"><img class="h-96" src="./assets/images/3.png" alt></a>
+                </figure>
+            </div>
+            <p class="font-semibold">Mundo Peludo es tu destino especializado para todo lo relacionado con mascotas. En nuestro rincón de amor
+                animal, ofrecemos una cuidada selección de productos y servicios diseñados para consentir a tus amigos
+                peludos. Desde alimentos premium hasta juguetes vibrantes y cuidado especializado, estamos comprometidos
+                a
+                proporcionar todo lo que necesitas para el bienestar y la felicidad de tus mascotas. Únete a nuestra
+                comunidad de amantes de los animales y descubre un lugar donde la calidad se encuentra con el afecto
+                incondicional. ¡Bienvenido a Mundo Peludo!</p>
+            <a class="rounded-full bg-forest w-40 text-center self-center text-white px-5 py-3 font-semibold"
+                href="./assets/pages/contacto.html">Contáctenos</a>
         </div>
-        <p>Mundo Peludo es tu destino especializado para todo lo relacionado con mascotas. En nuestro rincón de amor
-            animal, ofrecemos una cuidada selección de productos y servicios diseñados para consentir a tus amigos
-            peludos. Desde alimentos premium hasta juguetes vibrantes y cuidado especializado, estamos comprometidos a
-            proporcionar todo lo que necesitas para el bienestar y la felicidad de tus mascotas. Únete a nuestra
-            comunidad de amantes de los animales y descubre un lugar donde la calidad se encuentra con el afecto
-            incondicional. ¡Bienvenido a Mundo Peludo!</p>
-        <a class="rounded-full bg-forest text-white px-5 py-3 font-semibold" href="#">Conactenos</a>
 
     </main>
 
@@ -52,8 +75,8 @@
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script type="module" src="../../tailwind.config.extension.js"></script>
-    <script type="module" src="../../tailwind.config.js"></script>
+    <script type="module" src="./tailwind.config.extension.js"></script>
+    <script type="module" src="./tailwind.config.js"></script>
     <script src="./main.js"></script>
 </body>
 
