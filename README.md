@@ -1,4 +1,4 @@
-# BitBros Pet Shop - Aplicación Front-End
+# BitBros Pet Shop - Aplicación Frontend
 
 ## Resumen
 
