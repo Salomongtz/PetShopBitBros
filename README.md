@@ -13,5 +13,5 @@ Bienvenido/a a la Tienda de Mascotas de BitBros, una interfaz clara e intuitiva 
 
 ## Tecnologías
 
--Frontend: HTML, JavaScript, Vue.js
--Estilos: CSS, TailwindCSS
+- **Frontend**: HTML, JavaScript, Vue.js
+- **Estilos**: CSS, TailwindCSS
