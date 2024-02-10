@@ -13,5 +13,6 @@ Bienvenido/a a la Tienda de Mascotas de BitBros, una interfaz clara e intuitiva 
 
 ## Tecnologías
 
-- **Frontend**: HTML, JavaScript, Vue.js
-- **Estilos**: CSS, TailwindCSS
+- **Vue.js**: Un framework de JavaScript progresivo para construir interfaces de usuario, haciendo que la aplicación web sea interactiva y dinámica.
+- **TailwindCDD**: Un framework de CSS que simplifica el estilo y garantiza una apariencia limpia y consistente en toda la aplicación.
+
